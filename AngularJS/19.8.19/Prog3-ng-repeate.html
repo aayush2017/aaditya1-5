@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ng-repeat</title>
+</head>
+<body>
+<div ng-app="" ng-init="country=[{name:'India',code:'IND'}, {name:'America',code:'USA'}]">
+	<label>Country <select>
+		<option ng-repeat="c in country">{{c.code}}</option>
+	</select></label>
+</div>
+<script src="js/angular.min.js"></script>
+<script>
+	
+</script>
+</body>
+</html>

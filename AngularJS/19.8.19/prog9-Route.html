@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Include</title>
+</head>
+<body>
+<div ng-app="myApp">
+	<a href="#/!">Home</a>
+	<a href="#!about">About</a>
+	<a href="#!contact">Contact</a>
+	<div ng-view></div>
+</div>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+	$routeProvider 
+	.when("/", {
+		templateUrl: "home.html"
+	})
+	.when("/about", {
+		templateUrl: "about.html"
+	})
+	.when("/contact", {
+		templateUrl: "contact.html"
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Filter</title>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	<label>Country <select>
+		<option ng-repeat="c in country">{{c.code |lowercase}}</option>
+	</select></label>
+</div>
+<script src="js/angular.min.js"></script>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller("myCtrl", function ($scope) {
+		$scope.country = [{name:'India',code:'IND'}, {name:'America',code:'USA'}];
+	});
+</script>
+</body>
+</html>
