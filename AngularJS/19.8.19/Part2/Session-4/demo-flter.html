@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Filter</title>
+</head>
+<body>
+<div ng-app="myApp">
+	<p>{{ "HELLO" | myFilter }}</p>
+</div>
+<script src="../js/angular.min.js"></script>
+<script>
+var app = angular.module("myApp", []);
+app.filter("myFilter", function() {
+	return function (val) {
+		return "RS. " + val;
+	}
+});
+</script>
+</body>
+</html>

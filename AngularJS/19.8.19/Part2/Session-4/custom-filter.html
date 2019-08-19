@@ -1,0 +1,33 @@
+<html>
+<head>
+   <title>AngularJS Custom filter</title>
+   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+</head>
+<body>
+<h1>Custom Filter</h1>
+<div ng-app="myApp" ng-controller="myCtrl">
+	<p ng-repeat="x in names">{{ x | myName }}</p>
+</div>
+
+<script src = "../js/angular.min.js"></script>
+<script>
+var app = angular.module("myApp", []);
+app.filter('myName', function(){
+	return function (x) {
+		var i, c, txt ="";
+		for (i = 0; i < x.length; i++) {
+			c = x[i];
+			if (i % 2 == 0) {
+				c = c.toUpperCase();
+			}
+			txt +=c;
+		}
+		return txt;
+	};
+});
+app.controller('myCtrl', function($scope) {
+	$scope.names = ['priya kumar', 'prem kumar', 'lakshmi menon'];
+});
+</script>
+</body>
+</html>

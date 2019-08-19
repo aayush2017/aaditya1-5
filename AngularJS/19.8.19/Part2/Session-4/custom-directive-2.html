@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Directive</title>
+</head>
+<body>
+<div ng-app="myApp">
+  <div effect-color="red">Hello</div>
+</div>
+<script src="../js/angular.min.js"></script>
+<script>
+  angular.module('myApp', []).directive('effectColor', function () {
+      return {
+        restrict: 'A',
+        //linkFunction is linked with each element with scope to get the element specific data.
+        link: function (scope, element, attrs) {
+          element.css('background-color', attrs.effectColor);
+        }
+      }
+    });
+</script>
+</body>
+</html>

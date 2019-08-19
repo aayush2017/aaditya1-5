@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div ng-app="myApp">
+	<h1 textcolor="red">Hello</h1>
+</div>
+<script src="../js/angular.min.js"></script>
+<script>
+angular.module('myApp', []).directive('textcolor', function () {
+    return {
+      restrict: 'A',
+      //linkFunction is linked with each element with scope to get the element specific data.
+      link: function (scope, element, attrs) {
+        element.css('color', attrs.textcolor);
+      }
+    }
+  });
+</script>
+</body>
+</html>
