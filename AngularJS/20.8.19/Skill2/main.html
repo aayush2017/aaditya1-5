@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="scotchApp">
+
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+    .active {
+  background : red;
+}
+  </style>
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="mainController">
+<nav id="navbar-example2" class="navbar navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="/">Angular</a>
+  <ul class="nav nav-pills">
+    <li class="nav-item" ng-repeat='item in menuItems'>
+      <a class="nav-link" ng-class="{active : activeMenu === item.name}" href="{{item.location}}" ng-click="setActive(item.name)"> {{ item.name }}</a>
+    </li>
+  </ul>
+</nav>
+  
+  <div id="main">
+    <div ng-view></div>
+  </div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/script.js"></script>
+</body>
+
+</html>

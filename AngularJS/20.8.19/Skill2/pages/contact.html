@@ -1,0 +1,59 @@
+<div class="jumbotron">
+	<h1>Contact Page</h1>
+	<h4 id="contact">&nbsp;</h4>
+      <div id="shmess"></div>
+        <form autocomplete="on" id="formcontact">
+          <div class="form-group">
+            <label for="fullname">Name</label>
+            <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Full Name" required="" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control" placeholder="Email" required="" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required="" />
+          </div>
+          <div class="form-group">
+            <label for="msg">Message</label>
+            <textarea class="form-control" id="msg" required="" placeholder="Message"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" name="send" id="send" value="Send Message" class="btn btn-primary" onclick="ga('send', {  hitType: 'event',  eventCategory: 'Info',  eventAction: 'Messages',  eventLabel: 'ContactMe'});" />
+          </div>
+        </form>
+	<p>{{ message }}</p>
+</div>
+<script>
+$(document).ready(function() {
+  $("#formcontact").submit(function() {
+    var ac = "unm=" + $("#fullname").val() + "&uemail=" + $("#email").val() + "&umobile=" + $("#phone").val() + "&umess=" + $("#msg").val() + "&formName=contactForm";
+    $.ajax({
+      type:"post",
+      url:"sendMessage.php",
+      dataType:"text",
+      data:ac,
+      beforeSend: function() {
+        $("#shmess").html('<div class="alert alert-info alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span \aria-hidden="true">&times;</span></button>\
+          <strong>Sending Email</strong>, please wait !\
+        </div>');
+      },
+      success: function(data) {
+        if (data == "1") {
+          $("#shmess").html('<div class="alert alert-success alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span \aria-hidden="true">&times;</span></button>\
+          <strong>Thank you for Contact to us</strong>, we will contact to you ASAP.\
+        </div>');
+        } else {
+          $("#shmess").html('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span \aria-hidden="true">&times;</span></button>\
+          <strong>Messsage Sending Failed</strong>, Try again !\
+        </div>');
+        }
+      },
+      error:function(thrownError) {
+        alert("Error: "+thrownError);
+      }
+    });
+    return false;
+  });
+  });
